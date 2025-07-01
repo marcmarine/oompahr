@@ -1,3 +1,7 @@
 export default function App() {
-  return <h1>OompaHR</h1>
+  return (
+    <div className="p-4">
+      <h1 className="text-3xl font-black">OompaHR</h1>
+    </div>
+  )
 }
