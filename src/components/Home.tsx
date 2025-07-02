@@ -1,4 +1,4 @@
-import Workers from './Workers'
+import Workers from '../features/workers/Workers'
 
 export default function Home() {
   return (
