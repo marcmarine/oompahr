@@ -1,11 +1,14 @@
 @import 'tailwindcss';
 
 :root {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  --background-color: #242424;
 
   color-scheme: light dark;
+
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,7 +19,8 @@
 
 @media (prefers-color-scheme: light) {
   :root {
+    --background-color: whitesmoke;
+
     color: #213547;
-    background-color: #ffffff;
   }
 }

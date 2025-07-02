@@ -6,7 +6,7 @@ import Worker from './components/Worker'
 export default function App() {
   return (
     <Routes>
-      <Route path={import.meta.env.BASE_URL} element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Workers />} />
         <Route path=":id" element={<Worker />} />
       </Route>
