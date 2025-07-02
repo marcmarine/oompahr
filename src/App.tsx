@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router'
 import Layout from './components/Layout'
 import Home from './components/Home'
-import Detail from './components/Detail'
+import Detail from './components/Details'
 import Worker from './features/workers/Worker'
 
 export default function App() {

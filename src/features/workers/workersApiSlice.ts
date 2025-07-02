@@ -39,8 +39,17 @@ export const workersApiSlice = createApi({
   reducerPath: 'workersApi',
 
   endpoints: (build) => ({
-    getWorkers: build.query<WorkersApiResponse, number>({
-      query: (page) => `?page=${page.toString()}`,
+    getWorkers: build.infiniteQuery<Worker[], void, number>({
+      query({ pageParam }) {
+        return `?page=${pageParam}`
+      },
+      infiniteQueryOptions: {
+        initialPageParam: 1,
+        getNextPageParam: (_lastPage, _allPages, lastPageParam) =>
+          lastPageParam + 1,
+      },
+
+      transformResponse: (response: WorkersApiResponse) => response.results,
     }),
     getWorkerById: build.query<WorkerApiResponse, number>({
       query: (id) => `/${id}`,
@@ -48,4 +57,5 @@ export const workersApiSlice = createApi({
   }),
 })
 
-export const { useGetWorkersQuery, useGetWorkerByIdQuery } = workersApiSlice
+export const { useGetWorkersInfiniteQuery, useGetWorkerByIdQuery } =
+  workersApiSlice
