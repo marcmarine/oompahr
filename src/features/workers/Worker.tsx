@@ -29,8 +29,9 @@ export default function Worker() {
         <div className="flex-1">
           <img className="rounded-xs" src={image} alt={fullName} />
         </div>
-        <div className="flex-2">
+        <div className="flex-1 xl:flex-2 flex flex-col justify-center">
           <hgroup>
+            <p>Worker</p>
             <h1>{fullName}</h1>
             <p>
               <small>
