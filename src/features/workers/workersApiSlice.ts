@@ -49,10 +49,12 @@ export const workersApiSlice = createApi({
           lastPageParam + 1,
       },
 
+      keepUnusedDataFor: 86400,
       transformResponse: (response: WorkersApiResponse) => response.results,
     }),
     getWorkerById: build.query<WorkerApiResponse, number>({
       query: (id) => `/${id}`,
+      keepUnusedDataFor: 86400,
     }),
   }),
 })
