@@ -72,9 +72,19 @@ export default function Workers() {
             const [username] = email.split('@')!
 
             return (
-              <article key={id} ref={isLast ? lastItemRef : null}>
-                <header className="aspect-[4/3] overflow-hidden">
-                  <img className="rounded-xs" src={image} alt={first_name} />
+              <article
+                key={id}
+                ref={isLast ? lastItemRef : null}
+                className="group"
+              >
+                <header>
+                  <div className="aspect-[4/3] overflow-hidden rounded-xs">
+                    <img
+                      className="group-hover:scale-105 transition-transform duration-400"
+                      src={image}
+                      alt={first_name}
+                    />
+                  </div>
                 </header>
                 <hgroup>
                   <NavLink
