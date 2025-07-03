@@ -1,11 +1,12 @@
 import { useCallback, useMemo, useRef } from 'react'
 import { NavLink, useSearchParams } from 'react-router'
-import { useGetWorkersInfiniteQuery } from './workersApiSlice'
+import { useGetWorkersInfiniteQuery, usePrefetch } from './workersApiSlice'
 import { normalize } from '../../lib/utils'
 
 export default function Workers() {
   const observerRef = useRef<IntersectionObserver | null>(null)
   const [searchParams] = useSearchParams()
+  const prefetchWorker = usePrefetch('getWorkerById')
   const { data, isError, isLoading, fetchNextPage, isFetching } =
     useGetWorkersInfiniteQuery()
 
@@ -70,7 +71,11 @@ export default function Workers() {
                   <img className="rounded-xs" src={image} alt={first_name} />
                 </header>
                 <hgroup>
-                  <NavLink to={`/${id}`} className="text-lg">
+                  <NavLink
+                    to={`/${id}`}
+                    className="text-lg"
+                    onMouseEnter={() => prefetchWorker(id)}
+                  >
                     {first_name} {last_name}
                   </NavLink>
                   <p>

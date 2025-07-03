@@ -57,5 +57,8 @@ export const workersApiSlice = createApi({
   }),
 })
 
-export const { useGetWorkersInfiniteQuery, useGetWorkerByIdQuery } =
-  workersApiSlice
+export const {
+  useGetWorkersInfiniteQuery,
+  useGetWorkerByIdQuery,
+  usePrefetch,
+} = workersApiSlice
