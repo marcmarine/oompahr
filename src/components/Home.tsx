@@ -1,5 +1,5 @@
 import Workers from '../features/workers/Workers'
-import SearchButton from './SearchButton'
+import SearchInput from './SearchInput'
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <p>Oompa Loompa 's crew of Willy Wonka's chocolate factory.</p>
       </hgroup>
       <div className="-mx-4 px-3 md:-mx-8 md:px-4 py-3 sticky top-0 bg-[var(--pico-background-color)]/80 backdrop-blur-lg">
-        <SearchButton />
+        <SearchInput />
       </div>
       <Workers />
     </>
