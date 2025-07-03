@@ -14,3 +14,5 @@ const IntersectionObserverMock = vi.fn(() => ({
 }))
 
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
+
+window.scrollTo = vi.fn()
