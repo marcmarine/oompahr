@@ -13,7 +13,7 @@ export default function SearchButton() {
       name="search"
       placeholder="Search"
       aria-label="Search"
-      defaultValue={searchParams.get('query') as string}
+      value={searchParams.get('query') || ''}
       onChange={(event) => handleSearch(event.target.value)}
       className="!mb-0"
     />

@@ -1,5 +1,6 @@
-import { useParams } from 'react-router'
+import { NavLink, useParams } from 'react-router'
 import { useGetWorkerByIdQuery } from './workersApiSlice'
+import { getGenderName } from '../../lib/utils'
 
 export default function Worker() {
   const params = useParams()
@@ -12,12 +13,15 @@ export default function Worker() {
     email,
     quota,
     profession,
+    gender,
   } = data ?? {}
 
   if (isError) return <div>An error has occurred!</div>
   if (isLoading) return <span aria-busy="true">Fetching...</span>
 
   const fullName = `${first_name} ${last_name}`
+  const [username] = email?.split('@')!
+  const genderName = getGenderName(gender!)
 
   return (
     <>
@@ -29,21 +33,38 @@ export default function Worker() {
           <hgroup>
             <h1>{fullName}</h1>
             <p>
-              <small>{email?.split('@')[0]}</small>
+              <small>
+                {username} · {genderName}
+              </small>
             </p>
           </hgroup>
           <hr />
-          <p>{profession}</p>
+          <div className="flex gap-4 flex-col md:items-start">
+            <p>{profession}</p>
+            <a href={`mailto:${email}`} role="button">
+              Send a Message
+            </a>
+          </div>
         </div>
       </div>
-      <div>
+      <div className="pb-8">
         <blockquote>
           <span className="line-clamp-2">{quota}</span>
           <footer>
             <cite>— {fullName}</cite>
           </footer>
         </blockquote>
-        <div dangerouslySetInnerHTML={{ __html: description as string }} />
+        <div
+          className="mb-8"
+          dangerouslySetInnerHTML={{ __html: description as string }}
+        />
+        <NavLink
+          to={`/?query=${profession}`}
+          role="button"
+          className="w-full md:w-auto outline secondary"
+        >
+          Find more {profession?.toLocaleLowerCase()}s
+        </NavLink>
       </div>
     </>
   )

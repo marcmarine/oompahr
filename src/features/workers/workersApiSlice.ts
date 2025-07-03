@@ -12,7 +12,7 @@ interface Worker {
   first_name: string
   last_name: string
   favorite: Favorite
-  gender: string
+  gender: 'M' | 'F'
   image: string
   profession: string
   email: string

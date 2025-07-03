@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef } from 'react'
 import { NavLink, useSearchParams } from 'react-router'
 import { useGetWorkersInfiniteQuery, usePrefetch } from './workersApiSlice'
 import { normalize } from '../../lib/utils'
+import SearchResultsSummary from '../../components/SearchResultsSummary'
 
 export default function Workers() {
   const observerRef = useRef<IntersectionObserver | null>(null)
@@ -50,21 +51,25 @@ export default function Workers() {
   if (isError) return <div>An error has occurred!</div>
   if (isLoading) return <span aria-busy="true">Fetching...</span>
 
+  const remainingItemsToFillRow = [
+    ...Array(3 - (filteredWorkers.length % 3) + 3).keys(),
+  ]
+
   return (
     <>
       {searchParams.has('query') && (
-        <div className="px-2">
-          <p className="text-xs !text-[var(--pico-muted-color)]">
-            {filteredWorkers.length} result
-            {filteredWorkers.length !== 1 ? 's' : ''} for the term "{searchTerm}
-            "
-          </p>
-        </div>
+        <SearchResultsSummary
+          numberOfResults={filteredWorkers.length}
+          searchTerm={searchTerm}
+        />
       )}
-      <div className="tw-grid gap-x-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+      <div className="py-4 tw-grid gap-x-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
         {filteredWorkers.map(
           ({ id, first_name, last_name, image, profession, email }, index) => {
             const isLast: boolean = index === allWorkers.length - 1
+            const fullName = `${first_name} ${last_name}`
+            const [username] = email.split('@')!
+
             return (
               <article key={id} ref={isLast ? lastItemRef : null}>
                 <header className="aspect-[4/3] overflow-hidden">
@@ -76,10 +81,10 @@ export default function Workers() {
                     className="text-lg"
                     onMouseEnter={() => prefetchWorker(id)}
                   >
-                    {first_name} {last_name}
+                    {fullName}
                   </NavLink>
                   <p>
-                    <small>{email.split('@')[0]}</small>
+                    <small>{username}</small>
                   </p>
                 </hgroup>
                 <footer>
@@ -93,15 +98,13 @@ export default function Workers() {
         )}
         {isFetching &&
           !searchTerm &&
-          [...Array(3 - (filteredWorkers.length % 3) + 3).keys()].map(
-            (item) => (
-              <article
-                aria-busy="true"
-                key={item}
-                className="min-h-76 place-content-center"
-              ></article>
-            )
-          )}
+          remainingItemsToFillRow.map((item) => (
+            <article
+              aria-busy="true"
+              key={item}
+              className="min-h-76 place-content-center"
+            ></article>
+          ))}
       </div>
       {searchTerm && (
         <button onClick={handleNextPage} aria-busy={isFetching} type="submit">
