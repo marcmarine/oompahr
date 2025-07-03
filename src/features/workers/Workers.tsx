@@ -1,8 +1,9 @@
 import { useCallback, useMemo, useRef } from 'react'
 import { NavLink, useSearchParams } from 'react-router'
 import { useGetWorkersInfiniteQuery, usePrefetch } from './workersApiSlice'
-import { normalize } from '../../lib/utils'
+import { normalizeText } from '../../lib/utils'
 import SearchResultsSummary from '../../components/SearchResultsSummary'
+import { getHighlightedText } from '../../lib/getHighlightedText'
 
 export default function Workers() {
   const observerRef = useRef<IntersectionObserver | null>(null)
@@ -19,15 +20,15 @@ export default function Workers() {
   }
 
   const filteredWorkers = useMemo(() => {
-    const term = normalize(searchTerm)
+    const term = normalizeText(searchTerm)
 
     return allWorkers.filter((worker) => {
       const fullName = `${worker.first_name} ${worker.last_name}`
       const profession = worker.profession
 
       return (
-        normalize(fullName).includes(term) ||
-        normalize(profession).includes(term)
+        normalizeText(fullName).includes(term) ||
+        normalizeText(profession).includes(term)
       )
     })
   }, [allWorkers, searchTerm])
@@ -81,7 +82,7 @@ export default function Workers() {
                     className="text-lg"
                     onMouseEnter={() => prefetchWorker(id)}
                   >
-                    {fullName}
+                    {getHighlightedText(fullName, searchTerm)}
                   </NavLink>
                   <p>
                     <small>{username}</small>
@@ -89,7 +90,7 @@ export default function Workers() {
                 </hgroup>
                 <footer>
                   <span>
-                    <small>{profession}</small>
+                    <small>{getHighlightedText(profession, searchTerm)}</small>
                   </span>
                 </footer>
               </article>

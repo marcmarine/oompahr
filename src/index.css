@@ -4,3 +4,13 @@
 .tw-grid {
   @apply grid;
 }
+
+mark {
+  padding: 0;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --pico-mark-background-color: purple;
+  }
+}
