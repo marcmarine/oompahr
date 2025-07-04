@@ -52,31 +52,20 @@ Check out the [live application](https://marcmarine.github.io/oompahr).
 
 Before running this application, make sure you have the following installed:
 
-- Git
 - [Bun](https://bun.sh/docs/installation) (latest version recommended)
 
 ## Installation & Setup
 
-1. **Clone the repository**
+Follow these steps to get the project up and running locally:
 
 ```bash
-git clone https://github.com/marcmarine/oompahr
+bun create marcmarine/oompahr
 cd oompahr
+echo "VITE_API_URL=https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus" > .env.local
+bun dev
 ```
 
-2. **Install dependencies**
-
-```bash
-bun install
-```
-
-3. **Start the development server**
-
-```bash
-bun run dev
-```
-
-4. **Open your browser** Navigate to [http://localhost:5173](http://localhost:5173)
+Visit [http://localhost:5173/oompahr/](http://localhost:5173/oompahr/) to view the project.
 
 ## Testing
 
