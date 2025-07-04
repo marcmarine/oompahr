@@ -4,7 +4,10 @@ import '@testing-library/jest-dom/vitest'
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterAll(() => server.close())
-afterEach(() => server.resetHandlers())
+afterEach(() => {
+  server.resetHandlers()
+  window.history.pushState({}, '', '/')
+})
 
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
