@@ -1,8 +1,26 @@
-# OompaHR
+<p align="center">
+  <picture >
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/marcmarine/oompahr/raw/main/src/assets/logo.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/marcmarine/oompahr/raw/main/src/assets/logo.svg">
+    <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="https://github.com/marcmarine/oompahr/raw/main/src/assets/logo.svg" width="170px" >
+  </picture>
+</p>
 
-**Oompa Loompa Crew Management System.**
+<h1 align="center">OompaHR</h1>
+
+<h3 align="center">Oompa Loompa Crew Management System</h3>
+
+<span align="center">
 
 [![Deploy to Pages](https://github.com/marcmarine/oompahr/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/marcmarine/oompahr/actions/workflows/deploy.yml)
+
+</span>
+
+<span align="center">
+
+[Overview](#about-the-project) · [Getting Started](#installation--setup) · [Feedback](#feedback)
+
+</span>
 
 A modern web application for managing Willy Wonka's 🍫 chocolate factory crew, built to help the Human Resources department efficiently organize and track Oompa Loompa workers.
 
@@ -11,9 +29,9 @@ A modern web application for managing Willy Wonka's 🍫 chocolate factory crew,
 
 ## About the Project
 
-This _Single Page Application_ (SPA) provides a solution for managing the Oompa Loompa workforce at Willy Wonka's chocolate factory. The application features two main views:
+This **Single Page Application** (SPA) provides a solution for managing the Oompa Loompa workforce at Willy Wonka's chocolate factory. The application features two main views:
 
-- **Workers List View** - Browse and filter through all Oompa Loompa workers
+- **Workers Home View** - Browse and filter through all Oompa Loompa workers
 - **Worker Details View** - View detailed information about individual workers
 
 The application supports filtering by `name` and `profession`, making it easy for HR personnel to find and manage specific workers or groups of workers.
